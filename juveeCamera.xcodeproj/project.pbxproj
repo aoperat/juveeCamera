@@ -11,6 +11,18 @@
 		970BCA4A28ADBFD10005D420 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA4928ADBFD10005D420 /* ContentView.swift */; };
 		970BCA4C28ADBFD20005D420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 970BCA4B28ADBFD20005D420 /* Assets.xcassets */; };
 		970BCA4F28ADBFD20005D420 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 970BCA4E28ADBFD20005D420 /* Preview Assets.xcassets */; };
+		970BCA6328ADBFE50005D420 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5728ADBFE50005D420 /* VideoViewModel.swift */; };
+		970BCA6428ADBFE50005D420 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5828ADBFE50005D420 /* CameraViewModel.swift */; };
+		970BCA6528ADBFE50005D420 /* SubOrderCameraUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5A28ADBFE50005D420 /* SubOrderCameraUpload.swift */; };
+		970BCA6628ADBFE50005D420 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5B28ADBFE50005D420 /* Guide.swift */; };
+		970BCA6728ADBFE50005D420 /* SubOrderVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5C28ADBFE50005D420 /* SubOrderVideo.swift */; };
+		970BCA6828ADBFE50005D420 /* SelectTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5D28ADBFE50005D420 /* SelectTargetView.swift */; };
+		970BCA6928ADBFE50005D420 /* SubOrderCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5E28ADBFE50005D420 /* SubOrderCamera.swift */; };
+		970BCA6A28ADBFE50005D420 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA6028ADBFE50005D420 /* ImageManager.swift */; };
+		970BCA6B28ADBFE50005D420 /* CameraViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA6128ADBFE50005D420 /* CameraViewComponent.swift */; };
+		970BCA6C28ADBFE50005D420 /* CameraCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA6228ADBFE50005D420 /* CameraCommon.swift */; };
+		970BCA6E28ADBFF80005D420 /* SubOrderCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA6D28ADBFF80005D420 /* SubOrderCameraView.swift */; };
+		970BCA7128ADC1580005D420 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 970BCA7028ADC1580005D420 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +31,17 @@
 		970BCA4928ADBFD10005D420 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		970BCA4B28ADBFD20005D420 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		970BCA4E28ADBFD20005D420 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		970BCA5728ADBFE50005D420 /* VideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		970BCA5828ADBFE50005D420 /* CameraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		970BCA5A28ADBFE50005D420 /* SubOrderCameraUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubOrderCameraUpload.swift; sourceTree = "<group>"; };
+		970BCA5B28ADBFE50005D420 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		970BCA5C28ADBFE50005D420 /* SubOrderVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubOrderVideo.swift; sourceTree = "<group>"; };
+		970BCA5D28ADBFE50005D420 /* SelectTargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTargetView.swift; sourceTree = "<group>"; };
+		970BCA5E28ADBFE50005D420 /* SubOrderCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubOrderCamera.swift; sourceTree = "<group>"; };
+		970BCA6028ADBFE50005D420 /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		970BCA6128ADBFE50005D420 /* CameraViewComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewComponent.swift; sourceTree = "<group>"; };
+		970BCA6228ADBFE50005D420 /* CameraCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraCommon.swift; sourceTree = "<group>"; };
+		970BCA6D28ADBFF80005D420 /* SubOrderCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubOrderCameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				970BCA7128ADC1580005D420 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +77,8 @@
 			children = (
 				970BCA4728ADBFD10005D420 /* juveeCameraApp.swift */,
 				970BCA4928ADBFD10005D420 /* ContentView.swift */,
+				970BCA6D28ADBFF80005D420 /* SubOrderCameraView.swift */,
+				970BCA5528ADBFE50005D420 /* SubOrderCamera */,
 				970BCA4B28ADBFD20005D420 /* Assets.xcassets */,
 				970BCA4D28ADBFD20005D420 /* Preview Content */,
 			);
@@ -65,6 +91,47 @@
 				970BCA4E28ADBFD20005D420 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		970BCA5528ADBFE50005D420 /* SubOrderCamera */ = {
+			isa = PBXGroup;
+			children = (
+				970BCA5628ADBFE50005D420 /* ViewModel */,
+				970BCA5928ADBFE50005D420 /* View */,
+				970BCA5F28ADBFE50005D420 /* Helper */,
+			);
+			path = SubOrderCamera;
+			sourceTree = "<group>";
+		};
+		970BCA5628ADBFE50005D420 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				970BCA5728ADBFE50005D420 /* VideoViewModel.swift */,
+				970BCA5828ADBFE50005D420 /* CameraViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		970BCA5928ADBFE50005D420 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				970BCA5A28ADBFE50005D420 /* SubOrderCameraUpload.swift */,
+				970BCA5B28ADBFE50005D420 /* Guide.swift */,
+				970BCA5C28ADBFE50005D420 /* SubOrderVideo.swift */,
+				970BCA5D28ADBFE50005D420 /* SelectTargetView.swift */,
+				970BCA5E28ADBFE50005D420 /* SubOrderCamera.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		970BCA5F28ADBFE50005D420 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				970BCA6028ADBFE50005D420 /* ImageManager.swift */,
+				970BCA6128ADBFE50005D420 /* CameraViewComponent.swift */,
+				970BCA6228ADBFE50005D420 /* CameraCommon.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +150,9 @@
 			dependencies = (
 			);
 			name = juveeCamera;
+			packageProductDependencies = (
+				970BCA7028ADC1580005D420 /* Alamofire */,
+			);
 			productName = juveeCamera;
 			productReference = 970BCA4428ADBFD10005D420 /* juveeCamera.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +181,9 @@
 				Base,
 			);
 			mainGroup = 970BCA3B28ADBFD10005D420;
+			packageReferences = (
+				970BCA6F28ADC1580005D420 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 970BCA4528ADBFD10005D420 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +210,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				970BCA6628ADBFE50005D420 /* Guide.swift in Sources */,
+				970BCA6A28ADBFE50005D420 /* ImageManager.swift in Sources */,
+				970BCA6528ADBFE50005D420 /* SubOrderCameraUpload.swift in Sources */,
+				970BCA6E28ADBFF80005D420 /* SubOrderCameraView.swift in Sources */,
+				970BCA6928ADBFE50005D420 /* SubOrderCamera.swift in Sources */,
 				970BCA4A28ADBFD10005D420 /* ContentView.swift in Sources */,
+				970BCA6828ADBFE50005D420 /* SelectTargetView.swift in Sources */,
+				970BCA6428ADBFE50005D420 /* CameraViewModel.swift in Sources */,
+				970BCA6B28ADBFE50005D420 /* CameraViewComponent.swift in Sources */,
+				970BCA6728ADBFE50005D420 /* SubOrderVideo.swift in Sources */,
+				970BCA6328ADBFE50005D420 /* VideoViewModel.swift in Sources */,
 				970BCA4828ADBFD10005D420 /* juveeCameraApp.swift in Sources */,
+				970BCA6C28ADBFE50005D420 /* CameraCommon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +354,8 @@
 				DEVELOPMENT_TEAM = 45BNT5RDHP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +385,8 @@
 				DEVELOPMENT_TEAM = 45BNT5RDHP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -339,6 +427,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		970BCA6F28ADC1580005D420 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		970BCA7028ADC1580005D420 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 970BCA6F28ADC1580005D420 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 970BCA3C28ADBFD10005D420 /* Project object */;
 }
