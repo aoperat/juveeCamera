@@ -15,7 +15,7 @@ struct HomeView : View {
     
     @ObservedObject var common:CameraCommon
     @ObservedObject var video:VideoViewModel
-    @State var timeRemaining :Int = 5
+    @State var timeRemaining :Int = 30
     var captureMode : enumCaptureMode
     
     //@State var timeRemaining = 5
@@ -30,6 +30,10 @@ struct HomeView : View {
                 
             }else{
                 
+                if common.index < 4 && !video.showPreview{
+                    CameraGuidelineItem(common: common)
+                }
+                
                 Countdown(timeRemaining: $timeRemaining,action: {
                     if video.isRecording && timeRemaining >= 0 {
                         timeRemaining -= 1
@@ -37,7 +41,8 @@ struct HomeView : View {
                         if video.isRecording{
                             video.stopRecording()
                             video.showPreview.toggle()
-                            timeRemaining = 5
+                            //timeRemaining = 5
+                            timeRemaining = 30
                         }
                         
                     }
@@ -61,7 +66,7 @@ struct HomeView : View {
                                 if video.isRecording{
                                     video.stopRecording()
                                     video.showPreview.toggle()
-                                    timeRemaining = 5
+                                    timeRemaining = 30
                                 }else {
                                     video.startRecording()
                                 }

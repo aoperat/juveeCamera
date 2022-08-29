@@ -14,7 +14,6 @@
 		970BCA6328ADBFE50005D420 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5728ADBFE50005D420 /* VideoViewModel.swift */; };
 		970BCA6428ADBFE50005D420 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5828ADBFE50005D420 /* CameraViewModel.swift */; };
 		970BCA6528ADBFE50005D420 /* SubOrderCameraUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5A28ADBFE50005D420 /* SubOrderCameraUpload.swift */; };
-		970BCA6628ADBFE50005D420 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5B28ADBFE50005D420 /* Guide.swift */; };
 		970BCA6728ADBFE50005D420 /* SubOrderVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5C28ADBFE50005D420 /* SubOrderVideo.swift */; };
 		970BCA6828ADBFE50005D420 /* SelectTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5D28ADBFE50005D420 /* SelectTargetView.swift */; };
 		970BCA6928ADBFE50005D420 /* SubOrderCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA5E28ADBFE50005D420 /* SubOrderCamera.swift */; };
@@ -23,6 +22,7 @@
 		970BCA6C28ADBFE50005D420 /* CameraCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA6228ADBFE50005D420 /* CameraCommon.swift */; };
 		970BCA6E28ADBFF80005D420 /* SubOrderCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA6D28ADBFF80005D420 /* SubOrderCameraView.swift */; };
 		970BCA7128ADC1580005D420 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 970BCA7028ADC1580005D420 /* Alamofire */; };
+		97E67C3028AF1B850090DD0C /* CameraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E67C2F28AF1B850090DD0C /* CameraExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,6 @@
 		970BCA5728ADBFE50005D420 /* VideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 		970BCA5828ADBFE50005D420 /* CameraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		970BCA5A28ADBFE50005D420 /* SubOrderCameraUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubOrderCameraUpload.swift; sourceTree = "<group>"; };
-		970BCA5B28ADBFE50005D420 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		970BCA5C28ADBFE50005D420 /* SubOrderVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubOrderVideo.swift; sourceTree = "<group>"; };
 		970BCA5D28ADBFE50005D420 /* SelectTargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTargetView.swift; sourceTree = "<group>"; };
 		970BCA5E28ADBFE50005D420 /* SubOrderCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubOrderCamera.swift; sourceTree = "<group>"; };
@@ -42,6 +41,8 @@
 		970BCA6128ADBFE50005D420 /* CameraViewComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewComponent.swift; sourceTree = "<group>"; };
 		970BCA6228ADBFE50005D420 /* CameraCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraCommon.swift; sourceTree = "<group>"; };
 		970BCA6D28ADBFF80005D420 /* SubOrderCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubOrderCameraView.swift; sourceTree = "<group>"; };
+		97E67C2E28AE01FB0090DD0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		97E67C2F28AF1B850090DD0C /* CameraExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 		970BCA4628ADBFD10005D420 /* juveeCamera */ = {
 			isa = PBXGroup;
 			children = (
+				97E67C2E28AE01FB0090DD0C /* Info.plist */,
 				970BCA4728ADBFD10005D420 /* juveeCameraApp.swift */,
 				970BCA4928ADBFD10005D420 /* ContentView.swift */,
 				970BCA6D28ADBFF80005D420 /* SubOrderCameraView.swift */,
@@ -116,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				970BCA5A28ADBFE50005D420 /* SubOrderCameraUpload.swift */,
-				970BCA5B28ADBFE50005D420 /* Guide.swift */,
 				970BCA5C28ADBFE50005D420 /* SubOrderVideo.swift */,
 				970BCA5D28ADBFE50005D420 /* SelectTargetView.swift */,
 				970BCA5E28ADBFE50005D420 /* SubOrderCamera.swift */,
@@ -130,6 +131,7 @@
 				970BCA6028ADBFE50005D420 /* ImageManager.swift */,
 				970BCA6128ADBFE50005D420 /* CameraViewComponent.swift */,
 				970BCA6228ADBFE50005D420 /* CameraCommon.swift */,
+				97E67C2F28AF1B850090DD0C /* CameraExtension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -210,7 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				970BCA6628ADBFE50005D420 /* Guide.swift in Sources */,
+				97E67C3028AF1B850090DD0C /* CameraExtension.swift in Sources */,
 				970BCA6A28ADBFE50005D420 /* ImageManager.swift in Sources */,
 				970BCA6528ADBFE50005D420 /* SubOrderCameraUpload.swift in Sources */,
 				970BCA6E28ADBFF80005D420 /* SubOrderCameraView.swift in Sources */,
@@ -354,18 +356,21 @@
 				DEVELOPMENT_TEAM = 45BNT5RDHP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_FILE = juveeCamera/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진 촬영 및 비디오 촬영을 위한 카메라 사용 권한 요청";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "비디오 촬영을 위한 마이크 사용 권한 요청";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.04;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juveeCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -385,18 +390,21 @@
 				DEVELOPMENT_TEAM = 45BNT5RDHP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_FILE = juveeCamera/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진 촬영 및 비디오 촬영을 위한 카메라 사용 권한 요청";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "비디오 촬영을 위한 마이크 사용 권한 요청";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.04;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juveeCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

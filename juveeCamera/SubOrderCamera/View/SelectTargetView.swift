@@ -22,19 +22,12 @@ struct SelectTargetView: View {
             VStack {
                 
                 CustomButton(label:"FRONT" , image: Image(systemName: "face.smiling")) {
-                    print("FRONT")
-                    
                     common.setPostion(position: .front)
-                    
                     common.NextStep()
                 }
                 
                 CustomButton(label:"BACK", image: Image(systemName: "face.smiling")){
-                    print("BACK")
-                    
-                    //camera.setCameraPoistion(position: .back)
                     common.setPostion(position: .back)
-                    
                     common.NextStep()
                 }
                 
@@ -69,7 +62,7 @@ struct CustomButton: View {
                 }
             }
         }
-
+        
         .frame(width: 345, height: 428/2)
         .background(Color(hex:CustomColors.pink.rawValue))
         .cornerRadius(10)

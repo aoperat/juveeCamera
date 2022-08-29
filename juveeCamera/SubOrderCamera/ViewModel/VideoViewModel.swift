@@ -65,6 +65,7 @@ class VideoViewModel: NSObject,ObservableObject,AVCaptureFileOutputRecordingDele
             
             if self.session.canAddOutput(self.output){
                 self.session.addOutput(self.output)
+                
             }
             
             self.session.commitConfiguration() //commut
@@ -103,10 +104,13 @@ class VideoViewModel: NSObject,ObservableObject,AVCaptureFileOutputRecordingDele
     }
     
     func startRecording(){
-        // MARK: Temproay URL for recording Vidio
+        
         let tempURL = NSTemporaryDirectory() + "\(Date()).mov"
         
+        
         output.startRecording(to: URL(fileURLWithPath: tempURL), recordingDelegate: self)
+        
+        
         isRecording = true
     }
     

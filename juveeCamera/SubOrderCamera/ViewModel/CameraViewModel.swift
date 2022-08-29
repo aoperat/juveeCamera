@@ -22,7 +22,6 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
     @ObservedObject var common = CameraCommon()
     var imageManager = ImageManager()
     
-
     func checkPermission(position:AVCaptureDevice.Position){
         
         switch AVCaptureDevice.authorizationStatus(for: .video){
@@ -50,7 +49,7 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
         do{
             self.session.beginConfiguration()
             let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position)
-            
+
             
             let input = try AVCaptureDeviceInput(device: device!)
             if self.session.canAddInput(input){
@@ -87,11 +86,14 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
         
     }
     
-    
-    // take and retake functions...
     func takePic(){
         DispatchQueue.global(qos: .background).async {
-            self.output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+            
+            let photoSettings = AVCapturePhotoSettings()
+            photoSettings.flashMode = .on
+            
+            
+            self.output.capturePhoto(with: photoSettings, delegate: self)
             DispatchQueue.main.async {
                 
                 withAnimation{self.isTaken.toggle()}
@@ -112,7 +114,6 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
             }
         }
     }
-    
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if error != nil { return }

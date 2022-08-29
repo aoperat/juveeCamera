@@ -29,6 +29,7 @@ struct PhotoTakeButton: View {
     }
 }
 
+
 struct VideoTakeButton: View {
     
     @Binding var isRecording: Bool
@@ -38,33 +39,10 @@ struct VideoTakeButton: View {
         Button{
             action()
         } label:{
-//            Image(systemName: "camera")
-//                .resizable()
-//                .renderingMode(.template)
-//                .aspectRatio(contentMode: .fit)
-//                .foregroundColor(.white)
-//                .opacity(isRecording ? 0 : 1)
-//                .padding(12)
-//                .frame(width: 60, height: 60)
-//                .background(
-//                    Circle().stroke(isRecording ? .clear : .black)
-//                )
-//                .padding(6)
-//                .background{
-//                    Circle().fill(isRecording ? .red : .white)
-//                }
-            
-            Image(isRecording ? "startRecording" : "stopRecording")
+            Image(isRecording ? "stopRecording" : "startRecording")
                 .resizable()
-//                .renderingMode(.template)
-//                .aspectRatio(contentMode: .fit)
-//                .foregroundColor(.white)
-//                .opacity(isRecording ? 0 : 1)
-//                .padding(12)
                 .frame(width: 75, height: 75)
-            
         }//End of Button
-        
     }
 }
 
@@ -158,17 +136,33 @@ struct ConfirmCapsule: View {
 }
 
 struct CameraGuidelineItem: View {
+    
+    @ObservedObject var common:CameraCommon
+    
+    
+
+    
+    
     var body: some View {
-        Image("guideline")
-            .resizable()
-            .frame(width: 200, height: 200)
-            .zIndex(1)
+        
+        GeometryReader {geo in
+            Image("guide-img\(common.index)")
+                .frame(width: geo.size.width)
+                .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+
+        }.zIndex(1)
+//        Text("\(common.index)")
+//            .font(.system(size: 30))
+//            .zIndex(1)
+//        Image("guide-img\(common.index)")
+//
+//
+//            .zIndex(1)
+        
     }
 }
 
 struct BottomSpacer: View {
-    
-    
     
     var body: some View {
         Spacer()
@@ -176,19 +170,124 @@ struct BottomSpacer: View {
     }
 }
 
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
-    }
-}
-
-struct RoundedCorner: Shape {
-
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
+struct GuideView: View {
+    
+    @ObservedObject var common:CameraCommon
+    var captureMode : enumCaptureMode
+    
+    var body: some View {
+        
+        ZStack {
+            
+            Rectangle()
+                .fill(Color.black)
+                .opacity(0.5)
+                .ignoresSafeArea(.all, edges: .all)
+            
+            
+            VStack {
+                HStack {
+                    
+                    switch captureMode{
+                    case .photo:
+                        VStack{
+                            Image(systemName: "face.smiling")
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .foregroundColor(Color(hex:"#FF007A"))
+                            
+                            Text("Take a picture")
+                                .font(.system(size: 32))
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.black)
+                            
+                            Text("to show your teeth")
+                                .font(.system(size: 32))
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.black)
+                            
+                        }
+                        
+                    case .photoWithCard:
+                        VStack{
+                            Image(systemName: "face.smiling")
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .foregroundColor(Color(hex:"#FF007A"))
+                            
+                            Text("Take a picture")
+                                .font(.system(size: 32))
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.black)
+                            Text("to show your teeth")
+                                .font(.system(size: 32))
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.black)
+                            Text("with Credit card")
+                                .font(.system(size: 32))
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color(hex:"#FF007A"))
+                            
+                        }
+                    case .video:
+                        VStack{
+                            Image(systemName: "face.smiling")
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .foregroundColor(Color(hex:"#FF007A"))
+                            
+                            Text("Take a video")
+                                .font(.system(size: 32))
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.black)
+                            Text("to show your teeth")
+                                .font(.system(size: 32))
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.black)
+                            Text("for 5 seconds")
+                                .font(.system(size: 32))
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color(hex:"#FF007A"))
+                        }
+                        
+                    default:
+                        VStack{
+                            Text("No Guide")
+                        }
+                        
+                    }
+                }
+                .frame(width: 345, height: 428)
+                .background(.white)
+                .cornerRadius(10)
+                
+                Button(action: {
+                    common.guideOk = true
+                }, label: {
+                    Text("Ok")
+                        .font(.system(size: 17))
+                        .fontWeight(.regular)
+                        .padding()
+                        .foregroundColor(.white)
+                        .frame(width: 295, height: 45)
+                        .background(Color(hex:"#FF007A"))
+                        .cornerRadius(20)
+                    
+                    
+                })
+                .offset(y:30)
+                
+                
+            }
+        }
+        
     }
 }

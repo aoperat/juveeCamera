@@ -23,15 +23,12 @@ struct SubOrderCameraView: View {
     var body: some View {
         
         switch common.index{
-            //        case 1:
-            //            SelectTargetView(common: common, camera: camera)
         case 1:
             SubOrderCamera(common: common, camera: camera,captureMode:.photo)
         case 2:
             SubOrderCamera(common: common, camera: camera,captureMode:.photoWithCard)
         case 3:
             HomeView(common: common, video: video,captureMode: .video)
-            
         case 4:
             SubOrderCameraUploadView()
             

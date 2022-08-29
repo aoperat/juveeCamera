@@ -18,15 +18,13 @@ struct SubOrderCamera: View {
         
         ZStack{
             
-            
-            
-            
             if !common.guideOk{
                 GuideView(common: common, captureMode: captureMode)
                     .zIndex(1)
             }else{
-                if captureMode == .photoWithCard{
-                    CameraGuidelineItem()
+                if common.index < 4 && !camera.isTaken{
+                    CameraGuidelineItem(common: common)
+                        .zIndex(1)
                 }
             }
             
@@ -57,6 +55,7 @@ struct SubOrderCamera: View {
                             if common.guideOk{
                                 PhotoTakeButton {
                                     camera.takePic()
+                                    /*MARK: test*/
                                 }
                             }
                         }
@@ -90,6 +89,7 @@ struct SubOrderCamera: View {
                 BottomSpacer()
                 
             }.padding(.horizontal,10)
+                .zIndex(2)
         }
         .onAppear{
             camera.checkPermission(position: common.getPostion())

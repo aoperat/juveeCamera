@@ -9,23 +9,26 @@ import SwiftUI
 import Alamofire
 
 struct SubOrderCameraUploadView: View {
+    @State private var showingAlert = false
+    
     var body: some View {
         VStack{
             Button {
                 
-                //fileUpload()
                 
+                fileUpload()
             } label: {
-                Text("Test")
+                Text("upload")
+            }
+            .alert(isPresented: $showingAlert){
+                Alert(title: Text("Success"), message: Text("files are uploaded"), dismissButton: .default(Text("Dismiss")))
             }
             
         }
     }
-//
-//    var baseUrl: URL {
-//        return URL(string: ApiClient.BASE_URL)!
-//    }
+
     var baseUrl: URL {
+        //        return URL(string: ApiClient.BASE_URL)!
         return URL(string: "http://20.228.174.105")!
     }
 
@@ -57,48 +60,48 @@ struct SubOrderCameraUploadView: View {
         }
     }
     
-//    func fileUpload() {
-//        print("button clicked...")
-//
-//        let requestURL = baseUrl.absoluteString+"/api/uploadTest"
-//        let header : HTTPHeaders = [
-//            "Content-Type" : "multipart/form-data",
-//            "newApiKey":UserDefaultManager.shared.getApiKey()]
-//
-//        var directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        directory = directory.appendingPathComponent("NewDirectory")
-//
-//
-//        AF.upload(multipartFormData: { multipartFormData in
-//
-//            var videoIndex = 1
-//            var imageIndex = 1
-//
-//            for (index, file) in readFileList().enumerated(){
-//
-//                let extn = file.split(separator: ".")[1]
-//                if ["mov","mp4"].contains(extn) {
-//                    multipartFormData.append(directory.appendingPathComponent(file), withName: "\(file)\(index)", fileName: "\(file).mp4", mimeType: "video/mov")
-//
-//                }else if ["jpg","jpeg","png"].contains(extn){
-////                    multipartFormData.append(directory.appendingPathComponent(file), withName: "\(file)\(index)", fileName: "image\(imageIndex).jpg", mimeType: "image/jpg")
-//                    multipartFormData.append(directory.appendingPathComponent(file), withName: "\(file)\(index)", fileName: "\(file).jpg", mimeType: "image/jpg")
-//                }
-//
-//            }
-//
-//
-//        }, to: requestURL, usingThreshold: UInt64.init(), method: .post, headers: header).response { response in
-//            guard let statusCode = response.response?.statusCode,
-//                  statusCode == 200
-//            else {
-//                print("🥲 error xxxx")
-//                print(response.error?.localizedDescription)
-//                return }
-//            print(":::: successed ::::")
-//
-//        }
-//    }
+    func fileUpload() {
+        
+        print("button clicked...")
+        var result = false
+
+        let requestURL = baseUrl.absoluteString+"/api/uploadTest"
+        let header : HTTPHeaders = [
+            "Content-Type" : "multipart/form-data",
+            "newApiKey":"5a928987-b1e6-4813-bdcd-b4e6e5c3cc4e"]
+
+        var directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        directory = directory.appendingPathComponent("NewDirectory")
+
+
+        AF.upload(multipartFormData: { multipartFormData in
+
+            for (index, file) in readFileList().enumerated(){
+
+                let extn = file.split(separator: ".")[1]
+                if ["mov","mp4"].contains(extn) {
+                    multipartFormData.append(directory.appendingPathComponent(file), withName: "\(file)\(index)", fileName: "\(file).mp4", mimeType: "video/mov")
+
+                }else if ["jpg","jpeg","png"].contains(extn){
+                    multipartFormData.append(directory.appendingPathComponent(file), withName: "\(file)\(index)", fileName: "\(file).jpg", mimeType: "image/jpg")
+                }
+
+            }
+
+
+        }, to: requestURL, usingThreshold: UInt64.init(), method: .post, headers: header).response { response in
+            guard let statusCode = response.response?.statusCode,
+                  statusCode == 200
+            else {
+                print("🥲 error xxxx")
+                print(response.error?.localizedDescription)
+                return }
+            print(":::: successed ::::")
+            showingAlert = true
+
+        }
+        
+    }
     
     func clearTempFolder() {
         let fileManager = FileManager.default
