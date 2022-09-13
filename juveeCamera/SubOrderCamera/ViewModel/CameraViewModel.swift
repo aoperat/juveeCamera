@@ -49,7 +49,6 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
         do{
             self.session.beginConfiguration()
             let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position)
-
             
             let input = try AVCaptureDeviceInput(device: device!)
             if self.session.canAddInput(input){
@@ -86,11 +85,35 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
         
     }
     
+    func toggleTorch(on: Bool) {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+
+                if on == true {
+                    device.torchMode = .on
+                } else {
+                    device.torchMode = .off
+                }
+
+                device.unlockForConfiguration()
+            } catch {
+                print("Torch could not be used")
+            }
+        } else {
+            print("Torch is not available")
+        }
+    }
+
+    
     func takePic(){
         DispatchQueue.global(qos: .background).async {
             
             let photoSettings = AVCapturePhotoSettings()
-            photoSettings.flashMode = .on
+            
+            //photoSettings.flashMode = .on
             
             
             self.output.capturePhoto(with: photoSettings, delegate: self)
@@ -132,7 +155,7 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
         
         self.isTaken = false
         
-        if(imageManager.saveImage(image: image,filename: "\(captureMode == .photo ? "SmilePhto" : "MeasurePhoto").png")){
+        if(imageManager.saveImage(image: image,filename: "\(captureMode == .photo ? "SmilePhoto" : "MeasurePhoto").png")){
             print("saved Successfully...")
         }else{
             print("save failed")

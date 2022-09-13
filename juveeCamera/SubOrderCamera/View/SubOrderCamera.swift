@@ -54,6 +54,8 @@ struct SubOrderCamera: View {
                             
                             if common.guideOk{
                                 PhotoTakeButton {
+                                    
+                                    camera.toggleTorch(on: true)
                                     camera.takePic()
                                     /*MARK: test*/
                                 }
