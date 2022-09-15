@@ -7,12 +7,15 @@
 
 import SwiftUI
 import AVFoundation
+import UIScreenExtension
 
 struct SubOrderCamera: View {
     
     @ObservedObject var common:CameraCommon
     @ObservedObject var camera:CameraViewModel
     var captureMode:enumCaptureMode
+    
+    let ppc = UIScreen.pointsPerCentimeter!
     
     var body: some View {
         
@@ -22,73 +25,77 @@ struct SubOrderCamera: View {
                 GuideView(common: common, captureMode: captureMode)
                     .zIndex(1)
             }else{
-                if common.index < 4 && !camera.isTaken{
-                    CameraGuidelineItem(common: common)
-                        .zIndex(1)
+                
+                if camera.isTaken{
+                    
+                    
+                    VStack{
+                        Spacer()
+                        
+                        
+                        ConfirmCapsule(okMessage: "Accept", noMessage: "Decline")
+                        {
+                            camera.savePic(captureMode: captureMode)
+                            common.NextStep()
+                            
+                        } noCallback: {
+                            camera.reTake()
+                        }
+                        
+                        BottomSpacer()
+                    }.zIndex(3)
+                    
+                    
+                    GeometryReader {geo in
+                        
+                        if common.index == 2 {
+                            Image("guide-img2-1")
+                                .resizable()
+                                .frame(width: 5.398 * ppc, height: 18.651 * ppc)
+                                .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+                        }
+                    }.zIndex(2)
+                    
+                    
+                }else{
+                    if common.index < 4{
+                        CameraGuidelineItem(common: common)
+                            .zIndex(1)
+                    }
+                    
+                    
+                    VStack{
+                        Spacer()
+                        PhotoTakeButton {
+                            
+                            camera.toggleTorch(on: true)
+                            camera.takePic()
+                        }
+                        BottomSpacer()
+                    }.zIndex(2)
+                    //                    Button {
+                    //
+                    //                        common.SelectedCameraPosition = common.SelectedCameraPosition == AVCaptureDevice.Position.front ? AVCaptureDevice.Position.back : AVCaptureDevice.Position.front
+                    //
+                    //                        camera.changeCameraPosition(position: common.SelectedCameraPosition )
+                    //
+                    //                    } label: {
+                    //                        //Text("trnasform")
+                    //                        Image("camerachange")
+                    //                            .resizable()
+                    //                            .frame(width: 50, height: 45 )
+                    //
+                    //                    }
+                    
                 }
+                
             }
+            
             
             CameraPreview(camera: camera)
                 .ignoresSafeArea(.all, edges: .all)
             
             VStack{
-                Spacer()
-                ZStack{
-                    
-                    HStack{
-                        
-                        if camera.isTaken{
-                            
-                            ConfirmCapsule(okMessage: "Accept", noMessage: "Decline")
-                            {
-                                camera.savePic(captureMode: captureMode)
-                                common.NextStep()
-                                
-                            }
-                            
-                        noCallback: {
-                            camera.reTake()
-                        }
-                            
-                        }else{
-                            
-                            if common.guideOk{
-                                PhotoTakeButton {
-                                    
-                                    camera.toggleTorch(on: true)
-                                    camera.takePic()
-                                    /*MARK: test*/
-                                }
-                            }
-                        }
-                    }
-                    
-                    
-                    HStack {
-                        
-                        Spacer()
-                        
-                        if !camera.isTaken{
-                            Button {
-                                
-                                common.SelectedCameraPosition = common.SelectedCameraPosition == AVCaptureDevice.Position.front ? AVCaptureDevice.Position.back : AVCaptureDevice.Position.front
-                                
-                                camera.changeCameraPosition(position: common.SelectedCameraPosition )
-                                
-                            } label: {
-                                //Text("trnasform")
-                                Image("camerachange")
-                                    .resizable()
-                                    .frame(width: 50, height: 45 )
-                                
-                            }
-
-                        }
-                        
-                    }
-                }
-                
-                BottomSpacer()
                 
             }.padding(.horizontal,10)
                 .zIndex(2)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2ECB660928D0808700EF9965 /* UIScreenExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 2ECB660828D0808700EF9965 /* UIScreenExtension */; };
 		970BCA4828ADBFD10005D420 /* juveeCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA4728ADBFD10005D420 /* juveeCameraApp.swift */; };
 		970BCA4A28ADBFD10005D420 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BCA4928ADBFD10005D420 /* ContentView.swift */; };
 		970BCA4C28ADBFD20005D420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 970BCA4B28ADBFD20005D420 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ECB660928D0808700EF9965 /* UIScreenExtension in Frameworks */,
 				970BCA7128ADC1580005D420 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +156,7 @@
 			name = juveeCamera;
 			packageProductDependencies = (
 				970BCA7028ADC1580005D420 /* Alamofire */,
+				2ECB660828D0808700EF9965 /* UIScreenExtension */,
 			);
 			productName = juveeCamera;
 			productReference = 970BCA4428ADBFD10005D420 /* juveeCamera.app */;
@@ -185,6 +188,7 @@
 			mainGroup = 970BCA3B28ADBFD10005D420;
 			packageReferences = (
 				970BCA6F28ADC1580005D420 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2ECB660728D0808700EF9965 /* XCRemoteSwiftPackageReference "UIScreenExtension" */,
 			);
 			productRefGroup = 970BCA4528ADBFD10005D420 /* Products */;
 			projectDirPath = "";
@@ -370,7 +374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.04;
+				MARKETING_VERSION = 1.071;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juveeCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -404,7 +408,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.04;
+				MARKETING_VERSION = 1.071;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juveeCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -437,6 +441,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2ECB660728D0808700EF9965 /* XCRemoteSwiftPackageReference "UIScreenExtension" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marchv/UIScreenExtension";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		970BCA6F28ADC1580005D420 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -448,6 +460,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2ECB660828D0808700EF9965 /* UIScreenExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ECB660728D0808700EF9965 /* XCRemoteSwiftPackageReference "UIScreenExtension" */;
+			productName = UIScreenExtension;
+		};
 		970BCA7028ADC1580005D420 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 970BCA6F28ADC1580005D420 /* XCRemoteSwiftPackageReference "Alamofire" */;

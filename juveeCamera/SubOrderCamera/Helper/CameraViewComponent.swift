@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIScreenExtension
 
 //MARK: Button
 struct PhotoTakeButton: View {
@@ -140,24 +141,37 @@ struct CameraGuidelineItem: View {
     @ObservedObject var common:CameraCommon
     
     
-
-    
-    
+    let ppi = UIScreen.pointsPerInch!
+    let ppc = UIScreen.pointsPerCentimeter!
     var body: some View {
         
         GeometryReader {geo in
-            Image("guide-img\(common.index)")
-                .frame(width: geo.size.width)
-                .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+            
+            //vertical 53.98 / 153.0141
+            //horizontal 85.6 / 242.6455
+            // 186.51
+            if common.index == 2 {
+                Image("guide-img\(common.index)")
+                    .resizable()
+                    .frame(width: 5.398 * ppc, height: 18.651 * ppc)
+                    .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+            }else{
+                Image("guide-img\(common.index)")
+                    .frame(width: geo.size.width)
+                    .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+            }
+            
+            
+            
 
         }.zIndex(1)
-//        Text("\(common.index)")
-//            .font(.system(size: 30))
-//            .zIndex(1)
-//        Image("guide-img\(common.index)")
-//
-//
-//            .zIndex(1)
+            .onAppear{
+                
+                print("common.index :: \(common.index)")
+                print("print(UIScreen.pointsPerInch)")
+                print(UIScreen.pointsPerInch)
+                
+            }
         
     }
 }

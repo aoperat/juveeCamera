@@ -150,16 +150,19 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
     func savePic(captureMode : enumCaptureMode ){
         
 
-        let image = UIImage(data: self.picData)!
-        //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        var image = UIImage(data: self.picData)!
         
-        self.isTaken = false
+        if captureMode == .photoWithCard {
+            image = image.mergeWith(topImage: UIImage(named: "guide-img2-1")!)
+        }
         
-        if(imageManager.saveImage(image: image,filename: "\(captureMode == .photo ? "SmilePhoto" : "MeasurePhoto").png")){
+        if(imageManager.saveImage(image: image,filename: "\(captureMode == .photo ? "SmilePhoto" : "MeasurePhoto")")){
             print("saved Successfully...")
         }else{
             print("save failed")
         }
+        
+        self.isTaken = false
     }
     
     func captureOutput(_ captureOutput: AVCapturePhotoOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {

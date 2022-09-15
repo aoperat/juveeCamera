@@ -78,18 +78,18 @@ struct SubOrderCameraUploadView: View {
 
             for (index, file) in readFileList().enumerated(){
 
-                let extn = file.split(separator: ".")[1]
-                if ["mov","mp4"].contains(extn) {
+                //let extn = file.split(separator: ".")[1]
+                if ["TeethVideo"].contains(file) {
                     multipartFormData.append(directory.appendingPathComponent(file), withName: "\(file)\(index)", fileName: "\(file).mp4", mimeType: "video/mov")
 
-                }else if ["jpg","jpeg","png"].contains(extn){
+                }else if ["MeasurePhoto","SmilePhoto"].contains(file){
                     multipartFormData.append(directory.appendingPathComponent(file), withName: "\(file)\(index)", fileName: "\(file).jpg", mimeType: "image/jpg")
                 }
 
             }
 
 
-        }, to: requestURL, usingThreshold: UInt64.init(), method: .post, headers: header).response { response in
+        }, to: requestURL, usingThreshold: UInt64.init(), method: .post, headers: header).responseString { response in
             guard let statusCode = response.response?.statusCode,
                   statusCode == 200
             else {

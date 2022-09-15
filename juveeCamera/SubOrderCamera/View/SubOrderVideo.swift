@@ -67,7 +67,10 @@ struct HomeView : View {
                                     video.stopRecording()
                                     video.showPreview.toggle()
                                     timeRemaining = 30
+                                    video.toggleTorch(on: false)
+                                    
                                 }else {
+                                    video.toggleTorch(on: true)
                                     video.startRecording()
                                 }
                             }
@@ -89,9 +92,9 @@ struct HomeView : View {
                                 
                             } label: {
                                 //Text("trnasform")
-                                Image("camerachange")
-                                    .resizable()
-                                    .frame(width: 50, height: 45 )
+//                                Image("camerachange")
+//                                    .resizable()
+//                                    .frame(width: 50, height: 45 )
                                 
                             }
 
@@ -184,7 +187,7 @@ struct FinalPreview: View{
                     ConfirmCapsule(okMessage: "Accept", noMessage: "Decline") {
                         
                         //UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, nil)
-                        imageManager.saveVideo(url: url, filename: "TeethVideo.mp4")
+                        imageManager.saveVideo(url: url, filename: "TeethVideo")
                         common.NextStep()
                         
                     } noCallback: {
