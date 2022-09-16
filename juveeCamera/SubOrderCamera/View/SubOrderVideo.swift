@@ -181,6 +181,8 @@ struct FinalPreview: View{
                     .aspectRatio(contentMode: .fill)
                     .frame(width: size.width, height: size.height)
                 
+                
+                
                 VStack{
                     Spacer()
                     
@@ -188,6 +190,8 @@ struct FinalPreview: View{
                         
                         //UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, nil)
                         imageManager.saveVideo(url: url, filename: "TeethVideo")
+                        
+                        
                         common.NextStep()
                         
                     } noCallback: {
@@ -203,4 +207,6 @@ struct FinalPreview: View{
             
         }
     }
+    
+    
 }

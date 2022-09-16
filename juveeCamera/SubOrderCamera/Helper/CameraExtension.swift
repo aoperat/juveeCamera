@@ -40,3 +40,29 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+
+struct CircularProgressView: View {
+    // 1
+    let progress: Double
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(
+                    Color(hex:"#FF007A").opacity(0.5),
+                    lineWidth: 20
+                )
+            Circle()
+                // 2
+                .trim(from: 0, to: progress)
+                .stroke(
+                    Color(hex:"#FF007A"),
+                    style: StrokeStyle(
+                        lineWidth: 20,
+                        lineCap: .round
+                    )
+                )
+                .rotationEffect(.degrees(-90))
+        }
+    }
+}

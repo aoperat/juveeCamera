@@ -265,7 +265,7 @@ struct GuideView: View {
                                 .fontWeight(.semibold)
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.black)
-                            Text("for 5 seconds")
+                            Text("for 30 seconds")
                                 .font(.system(size: 32))
                                 .fontWeight(.semibold)
                                 .multilineTextAlignment(.center)

@@ -10,21 +10,29 @@ import Alamofire
 
 struct SubOrderCameraUploadView: View {
     @State private var showingAlert = false
+    @State var progressValue : Double = 0.0
     
     var body: some View {
-        VStack{
-            Button {
+//                    Text("upload")
+//                    ProgressView(value:progressValue,total:1).padding(.horizontal,10)
+            VStack {
+                HStack {
+                    CircularProgressView(progress: progressValue)
+                                .frame(width: 150, height: 150)
+
+                }
+                .frame(width: 345, height: 345)
+                .background(.white)
+                .cornerRadius(10)
                 
+                                        
                 
+            }.onAppear{
                 fileUpload()
-            } label: {
-                Text("upload")
-            }
-            .alert(isPresented: $showingAlert){
+            }.alert(isPresented: $showingAlert){
                 Alert(title: Text("Success"), message: Text("files are uploaded"), dismissButton: .default(Text("Dismiss")))
             }
             
-        }
     }
 
     var baseUrl: URL {
@@ -89,7 +97,14 @@ struct SubOrderCameraUploadView: View {
             }
 
 
-        }, to: requestURL, usingThreshold: UInt64.init(), method: .post, headers: header).responseString { response in
+        }, to: requestURL, usingThreshold: UInt64.init(), method: .post, headers: header)
+        
+        .uploadProgress(closure: { (progress) in
+                        print("Upload Progress: \(progress.fractionCompleted)")
+                        progressValue = progress.fractionCompleted
+                    })
+        
+        .responseString { response in
             guard let statusCode = response.response?.statusCode,
                   statusCode == 200
             else {
@@ -117,3 +132,5 @@ struct SubOrderCameraUploadView: View {
     }
 
 }
+
+
