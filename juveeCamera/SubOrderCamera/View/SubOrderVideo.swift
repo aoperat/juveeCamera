@@ -108,7 +108,7 @@ struct HomeView : View {
         }
         .overlay(content: {
             if let url = video.previewURL,video.showPreview{
-                FinalPreview(url: url, video: video,common: common)
+                FinalPreview(url: url, video: video,common: common, player: AVPlayer(url: url))
                     .transition(.move(edge: .trailing))
             }
         })
@@ -152,6 +152,7 @@ struct VideoPreview: UIViewRepresentable{
         video.preview.frame.size = size
         
         video.preview.videoGravity = .resizeAspectFill
+        
         view.layer.addSublayer(video.preview)
         
         video.session.startRunning()
@@ -171,17 +172,20 @@ struct FinalPreview: View{
     @ObservedObject var video : VideoViewModel
     @ObservedObject var common:CameraCommon
     var imageManager = ImageManager()
+    var player: AVPlayer
     
     var body: some View{
         GeometryReader{ proxy in
             let size = proxy.size
             
             ZStack{
-                VideoPlayer(player: AVPlayer(url: url))
+                VideoPlayer(player: player)
                     .aspectRatio(contentMode: .fill)
                     .frame(width: size.width, height: size.height)
-                
-                
+                    .onAppear {
+                        print("appear Video Player")
+                        player.pause()
+                    }
                 
                 VStack{
                     Spacer()

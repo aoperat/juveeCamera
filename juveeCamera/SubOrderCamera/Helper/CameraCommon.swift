@@ -54,10 +54,18 @@ extension UIImage {
         let areaSize = CGRect(x: 0, y: 0, width: bottomImage.size.width, height: bottomImage.size.height)
         bottomImage.draw(in: areaSize)
         
-        let topWidth = 5.398 * UIScreen.pixelsPerCentimeter!
-        let topHeight = 18.651 * UIScreen.pixelsPerCentimeter!
+        /*
+         MARK: 2022-10-04 사이즈 변경 전
+         
+         let topWidth = 5.398 * UIScreen.pixelsPerCentimeter!
+         let topHeight = 18.651 * UIScreen.pixelsPerCentimeter!
+         let topAreaSize = CGRect(x: (bottomImage.size.width/2) - (topWidth/2), y: (bottomImage.size.height/2) - (topHeight/2), width: topWidth, height: topHeight)
+         */
         
-        let topAreaSize = CGRect(x: (bottomImage.size.width/2) - (topWidth/2), y: (bottomImage.size.height/2) - (topHeight/2), width: topWidth, height: topHeight)
+        
+        let topWidth = topImage.size.width * UIScreen.main.scale
+        let topHeight = topImage.size.height * UIScreen.main.scale
+                let topAreaSize = CGRect(x: (bottomImage.size.width/2) - (topWidth/2), y: (bottomImage.size.height/2) - (topHeight/2), width: topWidth, height: topHeight)
         topImage.draw(in: topAreaSize, blendMode: .normal, alpha: 1.0)
         
         let mergedImage = UIGraphicsGetImageFromCurrentImageContext()!

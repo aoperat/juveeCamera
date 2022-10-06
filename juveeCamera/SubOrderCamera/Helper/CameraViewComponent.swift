@@ -150,10 +150,11 @@ struct CameraGuidelineItem: View {
             //vertical 53.98 / 153.0141
             //horizontal 85.6 / 242.6455
             // 186.51
+            
             if common.index == 2 {
                 Image("guide-img\(common.index)")
-                    .resizable()
-                    .frame(width: 5.398 * ppc, height: 18.651 * ppc)
+//                    .resizable()
+//                    .frame(width: 5.398 * ppc, height: 18.651 * ppc)
                     .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
             }else{
                 Image("guide-img\(common.index)")
@@ -165,13 +166,6 @@ struct CameraGuidelineItem: View {
             
 
         }.zIndex(1)
-            .onAppear{
-                
-                print("common.index :: \(common.index)")
-                print("print(UIScreen.pointsPerInch)")
-                print(UIScreen.pointsPerInch)
-                
-            }
         
     }
 }

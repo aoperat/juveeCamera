@@ -71,9 +71,8 @@ struct SubOrderCameraUploadView: View {
     func fileUpload() {
         
         print("button clicked...")
-        var result = false
 
-        let requestURL = baseUrl.absoluteString+"/api/uploadTest"
+        let requestURL = baseUrl.absoluteString+"/api/uploadPhotoFileOniOS"
         let header : HTTPHeaders = [
             "Content-Type" : "multipart/form-data",
             "newApiKey":"5a928987-b1e6-4813-bdcd-b4e6e5c3cc4e"]
@@ -109,7 +108,7 @@ struct SubOrderCameraUploadView: View {
                   statusCode == 200
             else {
                 print("🥲 error xxxx")
-                print(response.error?.localizedDescription)
+                print(response.error?.localizedDescription ?? "")
                 return }
             print(":::: successed ::::")
             showingAlert = true

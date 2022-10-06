@@ -50,8 +50,8 @@ struct SubOrderCamera: View {
                         
                         if common.index == 2 {
                             Image("guide-img2-1")
-                                .resizable()
-                                .frame(width: 5.398 * ppc, height: 18.651 * ppc)
+//                                .resizable()
+//                                .frame(width: 5.398 * ppc, height: 18.651 * ppc)
                                 .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
                         }
                     }.zIndex(2)
@@ -66,11 +66,27 @@ struct SubOrderCamera: View {
                     
                     VStack{
                         Spacer()
-                        PhotoTakeButton {
+                        
+                        if camera.Luxlev > 100{
+                            PhotoTakeButton {
+                                
+                                camera.toggleTorch(on: true)
+                                camera.takePic()
+                            }
+                        }else{
+                                Text("It's too dark")
+                                    .font(.system(size: 17))
+                                    .fontWeight(.regular)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .frame(width: 295, height: 45)
+                                    .background(Color.black)
+                                    .cornerRadius(20)
+                                    .opacity(0.7)
                             
-                            camera.toggleTorch(on: true)
-                            camera.takePic()
+                                
                         }
+                        
                         BottomSpacer()
                     }.zIndex(2)
                     //                    Button {

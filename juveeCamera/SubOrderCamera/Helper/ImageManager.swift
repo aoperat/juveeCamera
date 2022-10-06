@@ -42,7 +42,7 @@ class ImageManager {
         }
     }
     
-    func saveVideo(url: URL,filename:String) -> Bool {
+    func saveVideo(url: URL,filename:String) -> Void {
         
         let fileManager = FileManager.default
         let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("NewDirectory" + "/" + filename)
@@ -50,10 +50,8 @@ class ImageManager {
         do{
             let videoData = try Data(contentsOf: url)
             fileManager.createFile(atPath: paths as String, contents: videoData, attributes: nil)
-            return true
         }catch{
             print(error.localizedDescription)
-            return false
         }
     }
     

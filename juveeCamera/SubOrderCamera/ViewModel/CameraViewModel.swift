@@ -8,16 +8,19 @@
 import SwiftUI
 import AVFoundation
 
-class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate{
+class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate, AVCaptureVideoDataOutputSampleBufferDelegate{
     
     @Published var isTaken = false
     @Published var session = AVCaptureSession()
     @Published var alert = false
     @Published var output = AVCapturePhotoOutput()
+    @Published var videoOutput = AVCaptureVideoDataOutput()
+    private let videoSampleBufferQueue = DispatchQueue(label: "videoSampleBufferQueue")
     @Published var preview : AVCaptureVideoPreviewLayer!
     @Published var isSaved = false
     @Published var picData = Data(count: 0)
     @Published var cameraPosition :AVCaptureDevice.Position = .front
+    @Published var Luxlev: Int = 0
     
     @ObservedObject var common = CameraCommon()
     var imageManager = ImageManager()
@@ -58,6 +61,11 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
             if self.session.canAddOutput(self.output){
                 self.session.addOutput(self.output)
             }
+            
+            if self.session.canAddOutput(self.videoOutput){
+                self.session.addOutput(self.videoOutput)
+            }
+            videoOutput.setSampleBufferDelegate(self, queue: videoSampleBufferQueue)
             
             self.session.commitConfiguration()
         }catch{
@@ -131,7 +139,7 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
             
             DispatchQueue.main.async{
                 withAnimation{
-                    self.isTaken.toggle()
+                    self.isTaken = false
                 }
                 self.isSaved = false
             }
@@ -146,6 +154,23 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
         self.picData = imageData
         self.session.stopRunning()
     }
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        // Handle the pixelBuffer the way you like
+        //print("pixelBuffer::++ \(pixelBuffer)")
+        
+        let dict: NSDictionary = pixelBuffer.attachments.propagated["MetadataDictionary"]! as! NSDictionary
+
+        
+        //print(dict)
+        DispatchQueue.main.async {
+            self.Luxlev = dict["LuxLevel"] as! Int
+        }
+        
+        
+    }
+
     
     func savePic(captureMode : enumCaptureMode ){
         
@@ -179,9 +204,8 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
         let CalibrationConstant : Double = 50
 
         //Calculating the luminosity
-        let luminosity : Double = (CalibrationConstant * FNumber * FNumber ) / ( ExposureTime * ISOSpeedRatings )
+        let _ : Double = (CalibrationConstant * FNumber * FNumber ) / ( ExposureTime * ISOSpeedRatings )
 
-        print(luminosity)
         
     }
  

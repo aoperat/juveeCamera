@@ -11,12 +11,15 @@ import AVFoundation
 //MARK: ObservableObject
 //ObservableObject를 사용하면 해당 클래스의 인스턴스를 관찰하고 있다가 값이 변경될 때 뷰를 업데이트한다.
 //@Published 로 선언된 속성이 ObservableObject 에 포함되어 있다면 해당 속성이 업데이트 될 때마다 뷰를 업데이트 한다.
-class VideoViewModel: NSObject,ObservableObject,AVCaptureFileOutputRecordingDelegate{
+
+class VideoViewModel: NSObject,ObservableObject,AVCaptureFileOutputRecordingDelegate,AVCaptureVideoDataOutputSampleBufferDelegate{
     
     @Published var isTaken = false
     @Published var session = AVCaptureSession()
     @Published var alert = false
     @Published var output = AVCaptureMovieFileOutput()
+    @Published var videoOutput = AVCaptureVideoDataOutput()
+    private let videoSampleBufferQueue = DispatchQueue(label: "videoSampleBufferQueue")
     @Published var preview : AVCaptureVideoPreviewLayer!
     
     // MARK: Video Recorder Properties
@@ -24,6 +27,7 @@ class VideoViewModel: NSObject,ObservableObject,AVCaptureFileOutputRecordingDele
     @Published var recordedURLs: [URL] = []
     @Published var previewURL: URL?
     @Published var showPreview: Bool = false
+    @Published var Luxlev: Int = 0
     
     func checkPermission(position: AVCaptureDevice.Position){
         
@@ -67,6 +71,13 @@ class VideoViewModel: NSObject,ObservableObject,AVCaptureFileOutputRecordingDele
                 self.session.addOutput(self.output)
                 
             }
+            
+            
+            if self.session.canAddOutput(self.videoOutput){
+                self.session.addOutput(self.videoOutput)
+            }
+            videoOutput.setSampleBufferDelegate(self, queue: videoSampleBufferQueue)
+            
             
             self.session.commitConfiguration() //commut
             self.session.startRunning()
@@ -119,29 +130,29 @@ class VideoViewModel: NSObject,ObservableObject,AVCaptureFileOutputRecordingDele
         isRecording = false
     }
     
+
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         if let error = error {
             print(error.localizedDescription)
             return
         }
-        print(":::fileOutput:::")
-        print(outputFileURL)
+        
         self.previewURL = outputFileURL
     }
     
     func toggleTorch(on: Bool) {
         guard let device = AVCaptureDevice.default(for: .video) else { return }
-
+        
         if device.hasTorch {
             do {
                 try device.lockForConfiguration()
-
+                
                 if on == true {
                     device.torchMode = .on
                 } else {
                     device.torchMode = .off
                 }
-
+                
                 device.unlockForConfiguration()
             } catch {
                 print("Torch could not be used")
@@ -150,5 +161,5 @@ class VideoViewModel: NSObject,ObservableObject,AVCaptureFileOutputRecordingDele
             print("Torch is not available")
         }
     }
-
+    
 }
