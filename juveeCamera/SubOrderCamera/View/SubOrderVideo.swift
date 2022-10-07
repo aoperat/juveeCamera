@@ -18,8 +18,6 @@ struct HomeView : View {
     @State var timeRemaining :Int = 30
     var captureMode : enumCaptureMode
     
-    //@State var timeRemaining = 5
-    //let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View{
         ZStack{
@@ -41,8 +39,6 @@ struct HomeView : View {
                         if video.isRecording{
                             video.stopRecording()
                             video.showPreview.toggle()
-                            //timeRemaining = 5
-                            timeRemaining = 30
                         }
                         
                     }
@@ -52,7 +48,7 @@ struct HomeView : View {
             }
             
             VideoView(common: common, video: video)
-                //.environmentObject(common,video)
+            //.environmentObject(common,video)
             
             VStack{
                 Spacer()
@@ -66,7 +62,6 @@ struct HomeView : View {
                                 if video.isRecording{
                                     video.stopRecording()
                                     video.showPreview.toggle()
-                                    timeRemaining = 30
                                     video.toggleTorch(on: false)
                                     
                                 }else {
@@ -77,10 +72,10 @@ struct HomeView : View {
                             
                         }
                     }
-
                     
+                    
+                    /* MARK: 카메라 변환기능 사용시 주석 해제
                     HStack {
-                        
                         Spacer()
                         
                         if !video.isTaken{
@@ -91,24 +86,24 @@ struct HomeView : View {
                                 video.changeCameraPosition(position: common.SelectedCameraPosition )
                                 
                             } label: {
-                                //Text("trnasform")
-//                                Image("camerachange")
-//                                    .resizable()
-//                                    .frame(width: 50, height: 45 )
-                                
+                                Text("trnasform")
+                                Image("camerachange")
+                                .resizable()
+                                .frame(width: 50, height: 45 )
                             }
-
                         }
-                        
-                    }                }
-                                
+                    }
+                     */
+                    
+                }
+                
                 BottomSpacer()
                 
             }
         }
         .overlay(content: {
             if let url = video.previewURL,video.showPreview{
-                FinalPreview(url: url, video: video,common: common, player: AVPlayer(url: url))
+                FinalPreview(url: url, video: video,common: common,timeRemaining:$timeRemaining, player: AVPlayer(url: url))
                     .transition(.move(edge: .trailing))
             }
         })
@@ -168,9 +163,10 @@ struct VideoPreview: UIViewRepresentable{
 struct FinalPreview: View{
     
     var url: URL
-    //@Binding var showPreview: Bool
     @ObservedObject var video : VideoViewModel
     @ObservedObject var common:CameraCommon
+    @Binding var timeRemaining:Int
+    
     var imageManager = ImageManager()
     var player: AVPlayer
     
@@ -179,6 +175,32 @@ struct FinalPreview: View{
             let size = proxy.size
             
             ZStack{
+                
+                if timeRemaining > 0 {
+                    VStack{
+                        Image(systemName: "face.smiling")
+                            .resizable()
+                            .frame(width: 150, height: 150)
+                            .foregroundColor(Color(hex:"#FF007A"))
+                        
+                        Text("Video recorded duration must be 30 seconds.")
+                            .font(.system(size: 32))
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.black)
+                        
+                        Text("Please take for 30 seconds.")
+                            .font(.system(size: 32))
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(Color(hex:"#FF007A"))
+                    }.frame(width: 345, height: 428)
+                        .background(.white)
+                        .cornerRadius(10)
+                    
+                        .zIndex(1)
+                }
+                
                 VideoPlayer(player: player)
                     .aspectRatio(contentMode: .fill)
                     .frame(width: size.width, height: size.height)
@@ -190,16 +212,17 @@ struct FinalPreview: View{
                 VStack{
                     Spacer()
                     
-                    ConfirmCapsule(okMessage: "Accept", noMessage: "Decline") {
-                        
-                        //UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, nil)
-                        imageManager.saveVideo(url: url, filename: "TeethVideo")
+                    ConfirmCapsule(okMessage: "Accept", noMessage: "Decline", isUseble: timeRemaining <= 0) {
                         
                         
-                        common.NextStep()
+                        if timeRemaining <= 0{
+                            imageManager.saveVideo(url: url, filename: "TeethVideo")
+                            common.NextStep()
+                        }
                         
                     } noCallback: {
-                        video.showPreview.toggle()
+                        video.showPreview = false
+                        timeRemaining = 30
                         
                     }
                     .zIndex(1)

@@ -96,8 +96,10 @@ struct ConfirmCapsule: View {
     
     @State var okMessage: String
     @State var noMessage: String
+    @State var isUseble = true
     var okCallback : () -> ()
     var noCallback : () -> ()
+    
     
     var body: some View {
         
@@ -113,7 +115,7 @@ struct ConfirmCapsule: View {
                     .fontWeight(.regular)
                     .foregroundColor(.white)
                     .frame(width: 295/2, height: 45)
-                    .background(Color(hex:"#FF007A"))
+                    .background(Color(hex: getButtonColor(isUseble:isUseble)))
                     .cornerRadius(50, corners: .topLeft)
                     .cornerRadius(50, corners: .bottomLeft)
             }
@@ -133,6 +135,17 @@ struct ConfirmCapsule: View {
             }
             
         }.offset(y: -20)
+    }
+    
+    func getButtonColor(isUseble:Bool) -> String{
+        
+        print(isUseble)
+        
+        if isUseble {
+            return "#FF007A"
+        } else{
+            return "#808080"
+        }
     }
 }
 

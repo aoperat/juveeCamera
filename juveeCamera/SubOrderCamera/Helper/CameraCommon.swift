@@ -50,7 +50,6 @@ extension UIImage {
 //            .frame(width: 5.398 * ppc, height: 18.651 * ppc)
 //            .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
         
-        
         let areaSize = CGRect(x: 0, y: 0, width: bottomImage.size.width, height: bottomImage.size.height)
         bottomImage.draw(in: areaSize)
         
